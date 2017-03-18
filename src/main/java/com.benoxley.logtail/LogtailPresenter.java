@@ -36,7 +36,7 @@ public class LogtailPresenter implements Initializable {
         UKHASNetSocket socket = new UKHASNetSocket();
         socket.setHandler(s->{
 
-            Platform.runLater(()->view.getItems().add(0,s.getP()));
+            Platform.runLater(()->view.getItems().add(0,s.toString()));
         });
         executor.execute(socket);
 

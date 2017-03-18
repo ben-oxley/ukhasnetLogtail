@@ -4,6 +4,7 @@ import org.codehaus.jackson.annotate.JsonCreator;
 import org.codehaus.jackson.annotate.JsonProperty;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Created by ben on 18/03/2017.
@@ -68,6 +69,15 @@ public class Packet {
     }
 
     public LocalDateTime getTime(){
-        return LocalDateTime.parse(getT());
+        return LocalDateTime.parse(getT().replace('Z',' ').trim());
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s - %s - %s rssi:%d",
+                getTime().format(DateTimeFormatter.ISO_DATE_TIME),
+                getNn(),
+                getP(),
+                getR());
     }
 }
